@@ -7,8 +7,8 @@ import java.net.UnknownServiceException;
 import java.util.Optional;
 
 @EnableScan
-public interface UserRepository extends CrudRepository<User, String>{
-    Optional<User> findById(String id);
+public interface TaskRepository extends CrudRepository<Task, String>{
+    Optional<Task> findById(String id);
 
 
 }
