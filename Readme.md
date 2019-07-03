@@ -1,6 +1,10 @@
 
 ## Task Master
+
 ## Link to Deployed Application
-- havent deployed yet still working on test.
+
+- [Deployed Application](http://taskmaster-dev.us-west-1.elasticbeanstalk.com/tasks)
+
 ## Any Issues I encountered
-- havent deployed yet.
+
+- The environment variables wasn't exactly the same. After I made then exact it deployed.
