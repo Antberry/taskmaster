@@ -19,8 +19,14 @@ public class TaskController {
     }
 
     @PostMapping("/tasks")
-    public List<Task> tasksPost(@RequestParam String title, String description){
-        Task newTask = new Task(title, description);
+    public List<Task> tasksPost(@RequestBody Task task){
+        if(task.getAssignee().equals("")){
+            task.setStatus("Available");
+        }
+        else {
+            task.setStatus("Assigned");
+        }
+        taskRepository.save(task);
         List<Task> allTask = (List)taskRepository.findAll();
         return allTask;
     }
@@ -38,6 +44,24 @@ public class TaskController {
             task.setStatus("Finished");
         }
         taskRepository.save(task);
+        List<Task> allTask = (List)taskRepository.findAll();
+        return allTask;
+    }
+
+    @GetMapping("/users/{name}/tasks")
+    public List<Task> allTaskByUser(@PathVariable String name){
+        List<Task> allTasks = taskRepository.findByAssignee(name);
+        return allTasks;
+    }
+
+    @PutMapping("/task/{id}/assign/{assignee}")
+    public List<Task> getTaskIdByUser(@PathVariable UUID id, @PathVariable String assignee){
+        Task task = taskRepository.findById(id).get();
+        if(task != null){
+            task.setAssignee(assignee);
+            task.setStatus("Assigned");
+            taskRepository.save(task);
+        }
         List<Task> allTask = (List)taskRepository.findAll();
         return allTask;
     }
