@@ -17,6 +17,16 @@ public class Task {
 
     private String status;
 
+    public String getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(String assignee) {
+        this.assignee = assignee;
+    }
+
+    private String assignee;
+
     public Task(){}
 
     @DynamoDBAttribute
@@ -49,10 +59,11 @@ public class Task {
         this.status = status;
     }
 
-    public Task(String title, String description){
+    public Task(String title, String description, String assignee){
         this.title = title;
         this.description = description;
         this.status = "Available";
+        this.assignee = "";
     }
 
     @DynamoDBHashKey
