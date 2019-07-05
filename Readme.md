@@ -7,4 +7,4 @@
 
 ## Any Issues I encountered
 
-- The environment variables wasn't exactly the same. After I made then exact it deployed.
+I have not encountered any issues with lab 27.
