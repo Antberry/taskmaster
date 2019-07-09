@@ -7,4 +7,4 @@
 
 ## Any Issues I encountered
 
-I have not encountered any issues with lab 27.
+I tried to implement the S3 code and I broke my code completely. AWS is very confusing and I dont understand none it.
