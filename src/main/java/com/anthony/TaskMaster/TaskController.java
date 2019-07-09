@@ -1,14 +1,17 @@
 package com.anthony.TaskMaster;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
 public class TaskController {
+    private S3Client s3Client;
+
     @Autowired
     TaskRepository taskRepository;
 
@@ -33,7 +36,7 @@ public class TaskController {
 
     @PutMapping("/tasks/{id}/status")
     public List<Task> putTask(@PathVariable UUID id){
-        Task task = taskRepository.findById(id).get();
+        Task task = taskRepository.findById(id).getId();
         if(task.getStatus().equals("Available")){
             task.setStatus("Assigned");
         }
@@ -56,7 +59,7 @@ public class TaskController {
 
     @PutMapping("/task/{id}/assign/{assignee}")
     public List<Task> getTaskIdByUser(@PathVariable UUID id, @PathVariable String assignee){
-        Task task = taskRepository.findById(id).get();
+        Task task = taskRepository.findById(id).getId();
         if(task != null){
             task.setAssignee(assignee);
             task.setStatus("Assigned");
@@ -64,5 +67,20 @@ public class TaskController {
         }
         List<Task> allTask = (List)taskRepository.findAll();
         return allTask;
+    }
+
+    @PostMapping("/tasks/{id}/{filePath}")
+    public Task uploadPicByTaskId(@RequestBody Task task, @PathVariable  String filePath){
+        String pic = this.s3Client.uploadFile(filePath);
+
+        taskRepository.save(task);
+        List<Task> allTask = (List)taskRepository.findAll();
+        return (Task) allTask;
+    }
+
+    @GetMapping("/tasks/{id}")
+    public Task getTaskById(@PathVariable UUID id ){
+        Task getTask = taskRepository.findById(id);
+        return getTask;
     }
 }

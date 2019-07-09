@@ -17,6 +17,16 @@ public class Task {
 
     private String status;
 
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+
+    private String pic;
+
     public String getAssignee() {
         return assignee;
     }
