@@ -27,6 +27,7 @@ public class Task {
 
     private String pic;
 
+    @DynamoDBAttribute
     public String getAssignee() {
         return assignee;
     }
@@ -37,7 +38,7 @@ public class Task {
 
     private String assignee;
 
-    public Task(){}
+    public Task(String expectedTitle, String expectedDescription){}
 
     @DynamoDBAttribute
     public String getTitle() {
@@ -61,6 +62,7 @@ public class Task {
         this.id = id;
     }
 
+    @DynamoDBAttribute
     public String getStatus() {
         return status;
     }
@@ -81,5 +83,6 @@ public class Task {
     public UUID getId(){
         return id;
     }
+    public Task(){}
 
 }
