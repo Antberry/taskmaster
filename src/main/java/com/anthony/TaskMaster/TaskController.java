@@ -36,7 +36,7 @@ public class TaskController {
 
     @PutMapping("/tasks/{id}/status")
     public List<Task> putTask(@PathVariable UUID id){
-        Task task = taskRepository.findById(id).getId();
+        Task task = taskRepository.findById(id);
         if(task.getStatus().equals("Available")){
             task.setStatus("Assigned");
         }
@@ -59,7 +59,7 @@ public class TaskController {
 
     @PutMapping("/task/{id}/assign/{assignee}")
     public List<Task> getTaskIdByUser(@PathVariable UUID id, @PathVariable String assignee){
-        Task task = taskRepository.findById(id).getId();
+        Task task = taskRepository.findById(id);
         if(task != null){
             task.setAssignee(assignee);
             task.setStatus("Assigned");

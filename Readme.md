@@ -1,5 +1,8 @@
 
-## Task Master
+# Task Master
+
+## Into
+- Application that allows a user to set tasks that needs to be completed
 
 ## Link to Deployed Application
 
@@ -7,4 +10,6 @@
 
 ## Any Issues I encountered
 
-- The environment variables wasn't exactly the same. After I made then exact it deployed.
+- Still trying to get my react app frontend to work.(jul 8, tuesday jul 9, wednesday jul 10)
+
+- This is moving to fast for me that I feel im too far behind to catch up. The least i can do is the readme.md.
